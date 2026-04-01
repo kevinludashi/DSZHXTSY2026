@@ -2,41 +2,43 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自研电商综合管理系统-首页2026 V8.260128.01</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>自研电商综合管理系统 | 多系统集成平台 V9</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
         
+        /* ========== 浅色风格变量 ========== */
         :root {
-            --primary-color: #0a84ff;
-            --secondary-color: #5e5ce6;
-            --dark-bg: #0d1117;
-            --darker-bg: #010409;
-            --card-bg: #161b22;
-            --text-color: #f0f6fc;
-            --text-secondary: #8b949e;
-            --border-color: #30363d;
-            --success-color: #2ea043;
-            --warning-color: #f0883e;
-            --danger-color: #f85149;
-            --glow-color: rgba(10, 132, 255, 0.4);
+            --primary-color: #0969da;
+            --primary-hover: #0550ae;
+            --secondary-color: #6f42c1;
+            --bg-color: #f6f8fa;
+            --surface-color: #ffffff;
+            --card-bg: #ffffff;
+            --border-color: #d0d7de;
+            --text-primary: #1f2328;
+            --text-secondary: #57606a;
+            --text-muted: #6e7781;
+            --success-color: #2da44e;
+            --warning-color: #bf8700;
+            --danger-color: #cf222e;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.05);
+            --glow-color: rgba(9, 105, 218, 0.15);
         }
         
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-color);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(94, 92, 230, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(10, 132, 255, 0.1) 0%, transparent 20%);
-            overflow-x: hidden;
+            background-image: none;
         }
         
         .app-container {
@@ -47,7 +49,7 @@
             overflow: hidden;
         }
         
-        /* 顶部标题栏 - 减小高度 */
+        /* 顶部标题栏 - 保留品牌渐变但文字白色 */
         .app-header {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
@@ -55,11 +57,11 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             position: relative;
             z-index: 10;
-            min-height: 50px;
+            min-height: 52px;
         }
         
         .app-header::before {
@@ -69,7 +71,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
             animation: scan 3s infinite linear;
         }
         
@@ -88,18 +90,17 @@
         
         .app-title i {
             color: white;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .current-system {
             font-size: 0.85rem;
-            opacity: 0.9;
             background-color: rgba(0, 0, 0, 0.2);
-            padding: 4px 10px;
-            border-radius: 20px;
+            padding: 4px 12px;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
         }
         
-        /* 标题栏右侧按钮 */
         .header-controls {
             display: flex;
             align-items: center;
@@ -107,7 +108,7 @@
         }
         
         .header-btn {
-            background: none;
+            background: rgba(255,255,255,0.15);
             border: none;
             color: white;
             cursor: pointer;
@@ -117,27 +118,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 0.9rem;
             transition: all 0.2s;
         }
         
         .header-btn:hover {
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.3);
         }
         
-        /* 系统导航栏 - 减小高度 */
+        /* 系统导航栏 (浅色) */
         .system-nav {
-            background-color: var(--darker-bg);
+            background-color: var(--surface-color);
             border-bottom: 1px solid var(--border-color);
             display: flex;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            min-height: 40px;
+            min-height: 46px;
+            scrollbar-width: thin;
+            box-shadow: var(--shadow-sm);
         }
         
         .system-tab {
-            padding: 10px 15px;
+            padding: 10px 18px;
             background: none;
             border: none;
             border-bottom: 2px solid transparent;
@@ -147,59 +150,67 @@
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             white-space: nowrap;
-            position: relative;
+            font-weight: 500;
         }
         
         .system-tab:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: #f0f3f8;
+            color: var(--primary-color);
         }
         
         .system-tab.active {
             border-bottom-color: var(--primary-color);
             color: var(--primary-color);
             font-weight: 600;
+            background: linear-gradient(0deg, rgba(9,105,218,0.05), transparent);
         }
         
-        .system-tab i {
-            font-size: 0.9rem;
-        }
-        
-        /* 标签页容器 - 减小高度 */
+        /* 标签页栏 (浅色卡片风格) */
         .tabs-container {
-            background-color: var(--darker-bg);
+            background-color: #f1f3f6;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            min-height: 42px;
+            min-height: 44px;
+            gap: 2px;
+            padding: 0 4px;
         }
         
         .iframe-tab {
-            padding: 10px 15px;
-            background-color: transparent;
+            padding: 7px 14px;
+            background-color: #eef2f5;
             border: none;
-            border-right: 1px solid var(--border-color);
+            border-radius: 8px 8px 0 0;
+            margin-top: 4px;
             color: var(--text-secondary);
             cursor: pointer;
             white-space: nowrap;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
-            position: relative;
-            min-width: 140px;
+            gap: 8px;
             font-size: 0.85rem;
+            min-width: 130px;
+            position: relative;
+            box-shadow: 0 -1px 0 var(--border-color);
         }
         
         .iframe-tab:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: #e2e8f0;
+            color: var(--primary-color);
         }
         
         .iframe-tab.active {
-            background-color: var(--card-bg);
+            background-color: var(--surface-color);
             color: var(--primary-color);
+            border-top: 1px solid var(--primary-color);
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            box-shadow: 0 -2px 0 var(--primary-color);
+            font-weight: 500;
         }
         
         .tab-controls {
@@ -212,41 +223,41 @@
         .tab-btn {
             background: none;
             border: none;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             cursor: pointer;
             padding: 4px;
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 3px;
-            font-size: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
             transition: all 0.2s;
         }
         
         .tab-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(0,0,0,0.08);
         }
         
         .close-btn:hover {
             color: var(--danger-color);
         }
         
-        /* 内容区域 - 允许滚动 */
+        /* 内容区域 */
         .content-area {
             flex: 1;
             position: relative;
             overflow: hidden;
-            background-color: var(--dark-bg);
+            background-color: var(--bg-color);
         }
         
-        /* iframe容器 */
         .iframe-container {
             width: 100%;
             height: 100%;
             position: relative;
             display: none;
+            background: white;
         }
         
         .iframe-container.active {
@@ -257,40 +268,11 @@
             width: 100%;
             height: 100%;
             border: none;
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
             background-color: white;
         }
         
-        /* 加载状态 */
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark-bg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--border-color);
-            border-top: 3px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        
-        .loading-text {
-            color: var(--text-secondary);
-        }
-        
-        /* 欢迎/空状态 - 修改为可滚动 */
+        /* 欢迎页面 / 空状态 浅色适配 */
         .welcome-container {
             width: 100%;
             height: 100%;
@@ -298,8 +280,8 @@
             flex-direction: column;
             align-items: center;
             overflow-y: auto;
-            padding: 20px;
-            color: var(--text-secondary);
+            padding: 24px 20px;
+            background: var(--bg-color);
         }
         
         .welcome-content {
@@ -308,129 +290,136 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            max-width: 1000px;
+            max-width: 1100px;
             width: 100%;
         }
         
         .welcome-icon {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             color: var(--primary-color);
-            margin-bottom: 15px;
-            opacity: 0.5;
+            margin-bottom: 16px;
+            opacity: 0.85;
         }
         
         .welcome-title {
-            font-size: 1.6rem;
-            margin-bottom: 10px;
-            color: var(--text-color);
+            font-size: 1.9rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
         }
         
         .welcome-subtitle {
-            font-size: 0.95rem;
-            max-width: 600px;
+            font-size: 1rem;
+            max-width: 620px;
             line-height: 1.5;
-            margin-bottom: 20px;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
         }
         
-        /* 系统卡片 */
+        /* 系统卡片 浅色 */
         .system-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 1000px;
-            margin: 20px 0 30px;
+            max-width: 1100px;
+            margin: 16px 0 32px;
         }
         
         .system-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 22px 16px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.25s ease;
             cursor: pointer;
+            box-shadow: var(--shadow-sm);
         }
         
         .system-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--primary-color);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
         }
         
         .system-card-icon {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: var(--primary-color);
             margin-bottom: 12px;
         }
         
         .system-card-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
         }
         
         .system-card-desc {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         
         .system-card-status {
             font-size: 0.75rem;
-            padding: 3px 10px;
-            border-radius: 20px;
+            padding: 4px 12px;
+            border-radius: 30px;
             display: inline-block;
+            background: #f1f8ff;
         }
         
         .status-available {
-            background-color: rgba(46, 160, 67, 0.1);
-            color: var(--success-color);
+            background-color: #dafbe1;
+            color: #1a7f37;
         }
         
         .status-checking {
-            background-color: rgba(248, 81, 73, 0.1);
-            color: var(--danger-color);
+            background-color: #fff0db;
+            color: #b45a0c;
         }
         
-        /* 快捷操作 */
         .quick-actions {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 18px;
+            margin-top: 8px;
             flex-wrap: wrap;
             justify-content: center;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
         }
         
         .quick-action-btn {
-            background-color: var(--card-bg);
+            background-color: var(--surface-color);
             border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 10px 16px;
-            border-radius: 8px;
+            color: var(--text-primary);
+            padding: 10px 24px;
+            border-radius: 40px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
         }
         
         .quick-action-btn:hover {
-            background-color: rgba(10, 132, 255, 0.15);
+            background-color: #f0f4f9;
             border-color: var(--primary-color);
-            transform: translateY(-2px);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         
-        /* 标签页加载状态 */
+        /* 标签页内加载 */
         .tab-loading {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(22, 27, 34, 0.8);
+            background: rgba(255, 255, 255, 0.92);
             display: none;
             flex-direction: column;
             align-items: center;
@@ -439,885 +428,537 @@
         }
         
         .tab-spinner {
-            width: 30px;
-            height: 30px;
-            border: 2px solid var(--border-color);
-            border-top: 2px solid var(--primary-color);
+            width: 36px;
+            height: 36px;
+            border: 3px solid #e1e4e8;
+            border-top: 3px solid var(--primary-color);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
-        /* 背景光效 */
+        /* 底部版权信息 */
+        .app-footer {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            letter-spacing: 0.3px;
+        }
+        
+        .app-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .app-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 光效淡出浅色 */
         .glow-effect {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--glow-color), transparent 70%);
-            filter: blur(40px);
-            z-index: -1;
-            opacity: 0.3;
+            display: none;
         }
         
-        .glow-1 {
-            top: 10%;
-            left: 10%;
-        }
-        
-        .glow-2 {
-            bottom: 10%;
-            right: 10%;
-        }
-        
-        /* 动画 */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
         
-        /* 响应式调整 */
+        /* 错误页面内嵌样式统一 */
+        .error-container .quick-action-btn {
+            background: white;
+        }
+        
         @media (max-width: 768px) {
-            .app-title {
-                font-size: 1.1rem;
-            }
-            
-            .system-tab {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-                min-width: 100px;
-            }
-            
-            .iframe-tab {
-                padding: 8px 12px;
-                min-width: 130px;
-                font-size: 0.85rem;
-            }
-            
-            .system-cards {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-            }
+            .system-tab { padding: 8px 12px; font-size: 0.85rem; }
+            .iframe-tab { min-width: 110px; font-size: 0.8rem; padding: 6px 10px; }
+            .system-cards { grid-template-columns: 1fr; max-width: 500px; }
+            .welcome-title { font-size: 1.5rem; }
+            .app-footer { font-size: 0.7rem; padding: 8px 12px; }
         }
         
         @media (max-width: 480px) {
-            .app-header {
-                padding: 6px 12px;
-            }
-            
-            .app-title {
-                font-size: 1rem;
-            }
-            
-            .current-system {
-                font-size: 0.8rem;
-                padding: 3px 8px;
-            }
-            
-            .header-btn {
-                width: 28px;
-                height: 28px;
-                padding: 4px;
-            }
-            
-            .system-tab {
-                padding: 8px 10px;
-                min-width: 90px;
-                font-size: 0.8rem;
-            }
-            
-            .system-tab i {
-                display: none;
-            }
-            
-            .iframe-tab {
-                padding: 8px 10px;
-                min-width: 110px;
-                font-size: 0.8rem;
-            }
-            
-            .iframe-tab i {
-                display: none;
-            }
-            
-            .welcome-title {
-                font-size: 1.4rem;
-            }
-            
-            .quick-actions {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-            }
+            .system-tab i { display: none; }
+            .iframe-tab i { display: none; }
+            .quick-actions { flex-direction: column; width: 100%; max-width: 260px; }
+            .app-title { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- 背景光效 -->
-    <div class="glow-effect glow-1"></div>
-    <div class="glow-effect glow-2"></div>
-    
-    <!-- 主应用容器 -->
+    <!-- 浅色模式下隐藏光效 -->
     <div class="app-container">
-        <!-- 顶部标题栏 -->
         <div class="app-header">
             <div class="app-title">
-                <i class="fas fa-cube"></i>
-                自研电商综合管理系统-首页2026 V8.260128.01 | 作者:kevin鲁大师
+                <i class="fas fa-cubes"></i>
+                自研电商综合管理系统 V9
             </div>
             <div class="header-controls">
                 <div class="current-system" id="currentSystem">系统集成平台</div>
                 <button class="header-btn" id="headerRefreshBtn" title="刷新当前页面" style="display: none;">
-                    <i class="fas fa-redo"></i>
+                    <!-- <i class="fas fa-redo-alt"></i>-->
                 </button>
             </div>
         </div>
         
-        <!-- 系统导航栏 -->
-        <div class="system-nav">
-            <button class="system-tab active" data-index="0">
-                <i class="fas fa-box"></i>
-                订单管理
-            </button>
-            <button class="system-tab" data-index="1">
-                <i class="fas fa-shipping-fast"></i>
-                快递库存
-            </button>
-            <button class="system-tab" data-index="2">
-                <i class="fas fa-warehouse"></i>
-                商品库存
-            </button>
-            <button class="system-tab" data-index="3">
-                <i class="fas fa-search"></i>
-                快递查询
-            </button>
-			<button class="system-tab" data-index="4">
-			    <i class="fas fa-Dispatch on behalf"></i>
-			    代发订单
-			</button><button class="system-tab" data-index="5">
-                <i class="fas fa-cost of goods"></i>
-                商品成本
-            </button>
-        </div>
+        <!-- 动态系统导航栏 -->
+        <div class="system-nav" id="systemNav"></div>
         
         <!-- 标签页栏 -->
-        <div class="tabs-container" id="tabsContainer">
-            <!-- 标签页将通过JS动态生成 -->
-        </div>
+        <div class="tabs-container" id="tabsContainer"></div>
         
         <!-- 内容区域 -->
         <div class="content-area" id="contentArea">
-            <!-- 欢迎/空状态 -->
             <div class="welcome-container" id="welcomeContainer">
                 <div class="welcome-content">
-                    <div class="welcome-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h2 class="welcome-title">自研电商综合管理系统-首页2026</h2>
-                    <p class="welcome-subtitle">集成多个自研电商管理系统，支持在页面内同时打开多个系统，方便快速切换和管理。</p>
-                    
-                    <div class="system-cards" id="systemCards">
-                        <!-- 系统卡片将通过JS动态生成 -->
-                    </div>
-                    
+                    <!--<div class="welcome-icon">
+                        <i class="fas fa-chalkboard-user"></i>
+                    </div>-->
+                    <h2 class="welcome-title">自研电商综合管理系统</h2>
+                    <p class="welcome-subtitle">集成订单、快递库存、商品库存、代发、成本及快递查询等核心业务，多标签高效协同，数据安全优先。</p>
+                    <div class="system-cards" id="systemCards"></div>
                     <div class="quick-actions">
-                        <button class="quick-action-btn" id="openAllBtn">
-                            <i class="fas fa-layer-group"></i>
-                            一键打开所有系统
-                        </button>
-                        <button class="quick-action-btn" id="closeAllBtn">
-                            <i class="fas fa-times-circle"></i>
-                            关闭所有标签页
-                        </button>
+                        <button class="quick-action-btn" id="openAllBtn"><i class="fas fa-layer-group"></i> 一键打开所有系统</button>
+                        <button class="quick-action-btn" id="closeAllBtn"><i class="fas fa-times-circle"></i> 关闭所有标签页</button>
                     </div>
                 </div>
             </div>
-            
-            <!-- 加载状态 -->
-            <div class="loading-overlay" id="loadingOverlay" style="display: none;">
-                <div class="loading-spinner"></div>
-                <div class="loading-text" id="loadingText">正在加载系统...</div>
-            </div>
-            
-            <!-- iframe容器将通过JS动态创建 -->
+        </div>
+        
+        <!-- 底部版权信息 -->
+        <div class="app-footer">
+            ©2026 | 作者：kevinludashi 版权所有 盗用必究 | 版本号：V9-260401-01
         </div>
     </div>
 
     <script>
-        // 系统配置 - 直接使用网址
+        // ======================= 系统配置 (完全按用户提供网址，支持后期扩展) =======================
         const systems = [
-            {
-                name: '订单管理系统',
-                shortName: '订单管理',
-                url: 'https://www.kevinldsddgl.de5.net',
-                icon: 'fas fa-box',
-                description: '处理订单、发货、退货等全流程管理',
-                zoom: 1.0
-            },
-            {
-                name: '计数及快递库存管理系统',
-                shortName: '快递库存',
-                url: 'https://www.kevinldsjsykdkc.de5.net',
-                icon: 'fas fa-shipping-fast',
-                description: '管理快递单号、库存计数和快递费用',
-                zoom: 1.0
-            },
-            {
-                name: '商品库存管理系统',
-                shortName: '商品库存',
-                url: 'https://www.kevinldsSPKC.de5.net',
-                icon: 'fas fa-warehouse',
-                description: '管理商品库存、进货、出货和盘点',
-                zoom: 1.0
-            },
-            {
-                name: '代发订单管理系统',
-                shortName: '代发管理',
-                url: 'http://www.kevinlds260330.ccwu.cc/',
-                icon: 'fas fa-Dispatch on behalf',
-                description: '管理商品库存、进货、出货和盘点',
-                zoom: 1.0
-            },
-            {
-                name: '商品成本管理系统',
-                shortName: '商品成本管理',
-                url: 'http://www.kevinlds260330.ccwu.cc/',
-                icon: 'fas fa-cost of goods',
-                description: '商品成本管理',
-                zoom: 1.0
-            },
-            {
-                name: '自研快递查询程序',
-                shortName: '快递查询',
-                url: 'https://kevinludashi.github.io/KDCXXT2026/',
-                icon: 'fas fa-search',
-                description: '实时查询快递物流信息，支持多家快递公司',
-                zoom: 1.0
-            }
+            { name: "订单管理系统", shortName: "订单管理", url: "https://www.kevinldsddgl.de5.net/", icon: "fas fa-box", description: "订单处理、发货跟踪、售后全流程" },
+            { name: "快递计数及库存系统", shortName: "快递计数", url: "https://www.kevinldsjsykdkc.de5.net/", icon: "fas fa-shipping-fast", description: "快递单号库存、计数统计、物流费用" },
+            { name: "商品库存管理系统", shortName: "商品库存", url: "https://www.kevinldsspkc.de5.net/", icon: "fas fa-warehouse", description: "进销存、盘点预警、库存调拨" },
+            { name: "代发订单管理系统", shortName: "代发管理", url: "https://www.kevinlds260330.ccwu.cc/", icon: "fas fa-truck-loading", description: "代发订单同步、供应商对接" },
+            { name: "商品成本管理系统", shortName: "商品成本", url: "https://www.kevinlds603002.ccwu.cc/", icon: "fas fa-chart-line", description: "成本核算、利润分析、SKU监控" },
+            { name: "自研快递查询程序", shortName: "快递查询", url: "https://kevinludashi.github.io/KDCXXT2026/", icon: "fas fa-search", description: "实时物流追踪，多快递公司查询（该程序部署在国际服务器，一直刷新可打开）" }
         ];
         
-        // 全局变量
-        let tabs = []; // 存储打开的标签页
+        // 全局状态
+        let tabs = [];              // 打开的标签页
         let currentTabId = null;
-        const minZoom = 0.5;
-        const maxZoom = 2.0;
-        const zoomStep = 0.1;
+        const minZoom = 0.6, maxZoom = 2.0, zoomStep = 0.1;
         
-        // DOM元素
-        const currentSystemElement = document.getElementById('currentSystem');
-        const contentArea = document.getElementById('contentArea');
+        // DOM 元素
+        const systemNav = document.getElementById('systemNav');
+        const tabsContainer = document.getElementById('tabsContainer');
         const welcomeContainer = document.getElementById('welcomeContainer');
         const systemCardsContainer = document.getElementById('systemCards');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        const loadingText = document.getElementById('loadingText');
-        const tabsContainer = document.getElementById('tabsContainer');
-        const systemTabs = document.querySelectorAll('.system-tab');
+        const currentSystemSpan = document.getElementById('currentSystem');
         const headerRefreshBtn = document.getElementById('headerRefreshBtn');
         const openAllBtn = document.getElementById('openAllBtn');
         const closeAllBtn = document.getElementById('closeAllBtn');
+        const contentArea = document.getElementById('contentArea');
         
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            initApplication();
-        });
+        let systemTabButtons = [];
         
-        // 初始化应用
-        function initApplication() {
-            // 初始化系统卡片
-            initSystemCards();
+        // ========== 每日首次打开提醒 (手动备份数据) ==========
+        function checkDailyBackupReminder() {
+            const today = new Date().toISOString().slice(0,10); // YYYY-MM-DD
+            const lastVisit = localStorage.getItem('lastBackupRemindDate');
+            if (lastVisit !== today) {
+                // 每天第一次打开时提醒，存储当天日期
+                localStorage.setItem('lastBackupRemindDate', today);
+                // 优雅提醒：使用alert确保用户注意到 (符合产品需求)
+                alert('🔔 重要数据安全提醒\n\n请立即手动备份各系统数据（订单、库存、成本等），避免系统异常导致数据丢失！\n建议导出Excel或截图保存关键信息。\n\n感谢使用自研电商管理系统。');
+            }
+        }
+        
+        // ========== 辅助函数 ==========
+        function showWelcomePage() {
+            welcomeContainer.style.display = 'flex';
+            currentSystemSpan.textContent = '系统集成平台';
+            headerRefreshBtn.style.display = 'none';
+            if (systemTabButtons.length) {
+                systemTabButtons.forEach(btn => btn.classList.remove('active'));
+                if (systemTabButtons[0]) systemTabButtons[0].classList.add('active');
+            }
+            currentTabId = null;
+        }
+        
+        function applyZoom(tabId) {
+            const tab = tabs.find(t => t.id === tabId);
+            if (!tab) return;
+            const iframe = document.getElementById(`iframe-content-${tabId}`);
+            if (iframe) {
+                iframe.style.transform = `scale(${tab.zoom})`;
+                iframe.style.transformOrigin = '0 0';
+            }
+        }
+        
+        function refreshTab(tabId) {
+            const tab = tabs.find(t => t.id === tabId);
+            if (!tab) return;
+            loadTabContent(tabId);
+        }
+        
+        function loadTabContent(tabId) {
+            const tab = tabs.find(t => t.id === tabId);
+            if (!tab) return;
+            const container = document.getElementById(`iframe-${tabId}`);
+            if (!container) return;
             
-            // 设置系统导航点击事件
-            systemTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    
-                    // 更新导航标签状态
-                    systemTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 打开或切换到该系统
-                    openOrSwitchSystem(index);
-                });
-            });
+            const loadingDiv = container.querySelector('.tab-loading');
+            const oldIframe = container.querySelector('iframe');
+            if (oldIframe) oldIframe.remove();
             
-            // 设置顶部刷新按钮事件
-            headerRefreshBtn.addEventListener('click', () => {
-                if (currentTabId) {
-                    refreshTab(currentTabId);
+            if (loadingDiv) loadingDiv.style.display = 'flex';
+            
+            const iframe = document.createElement('iframe');
+            iframe.id = `iframe-content-${tabId}`;
+            iframe.src = tab.url;
+            iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-popups-to-escape-sandbox');
+            
+            iframe.onload = () => {
+                if (loadingDiv) loadingDiv.style.display = 'none';
+                applyZoom(tabId);
+                console.log(`✅ ${tab.name} 加载成功`);
+            };
+            iframe.onerror = () => {
+                if (loadingDiv) loadingDiv.style.display = 'none';
+                showIframeError(container, tab);
+            };
+            
+            setTimeout(() => {
+                if (loadingDiv && loadingDiv.style.display === 'flex') {
+                    loadingDiv.style.display = 'none';
+                    console.warn(`⚠️ ${tab.name} 加载超时`);
                 }
-            });
+            }, 12000);
             
-            // 设置快捷按钮事件
-            openAllBtn.addEventListener('click', openAllSystems);
-            closeAllBtn.addEventListener('click', closeAllTabs);
-            
-            // 初始显示欢迎页面
-            showWelcomePage();
+            container.appendChild(iframe);
         }
         
-        // 初始化系统卡片
-        function initSystemCards() {
-            systemCardsContainer.innerHTML = '';
-            
-            systems.forEach((system, index) => {
-                const card = document.createElement('div');
-                card.className = 'system-card';
-                card.setAttribute('data-index', index);
-                
-                card.innerHTML = `
-                    <div class="system-card-icon">
-                        <i class="${system.icon}"></i>
+        function showIframeError(container, tab) {
+            const existingErr = container.querySelector('.error-container');
+            if (existingErr) existingErr.remove();
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'welcome-container error-container';
+            errorDiv.style.position = 'absolute';
+            errorDiv.style.top = '0';
+            errorDiv.style.left = '0';
+            errorDiv.style.width = '100%';
+            errorDiv.style.height = '100%';
+            errorDiv.style.zIndex = '10';
+            errorDiv.style.backgroundColor = '#f9fafb';
+            errorDiv.innerHTML = `
+                <div class="welcome-content">
+                    <div class="welcome-icon"><i class="fas fa-exclamation-triangle" style="color:#cf222e;"></i></div>
+                    <h3 style="color:#1f2328;">${tab.name} 加载失败</h3>
+                    <p style="color:#57606a;">网络限制或网站不支持嵌入，您可以尝试新窗口打开</p>
+                    <div class="quick-actions" style="gap: 12px;">
+                        <button class="quick-action-btn" onclick="window.retryLoadTab('${tab.id}')"><i class="fas fa-redo"></i> 重新加载</button>
+                        <button class="quick-action-btn" onclick="window.open('${tab.url}', '_blank')"><i class="fas fa-external-link-alt"></i> 新窗口打开</button>
+                        <button class="quick-action-btn" onclick="window.closeTab('${tab.id}')"><i class="fas fa-times"></i> 关闭标签</button>
                     </div>
-                    <div class="system-card-title">${system.name}</div>
-                    <div class="system-card-desc">${system.description}</div>
-                    <div class="system-card-status status-checking" id="systemStatus${index}">
-                        正在检测可用性...
-                    </div>
-                `;
-                
-                card.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    
-                    // 更新导航标签状态
-                    systemTabs.forEach(t => t.classList.remove('active'));
-                    systemTabs[index].classList.add('active');
-                    
-                    // 打开或切换到该系统
-                    openOrSwitchSystem(index);
-                });
-                
-                systemCardsContainer.appendChild(card);
-                
-                // 检测系统可用性
-                checkSystemAvailability(index);
-            });
+                    <p style="margin-top: 20px; font-size: 0.8rem; color:#6e7781;">URL: ${tab.url}</p>
+                </div>
+            `;
+            container.appendChild(errorDiv);
         }
         
-        // 检测系统可用性
-        async function checkSystemAvailability(index) {
-            const system = systems[index];
-            const statusElement = document.getElementById(`systemStatus${index}`);
-            
-            try {
-                // 使用 fetch 检查网址是否可访问
-                const response = await fetch(system.url, { 
-                    method: 'HEAD',
-                    mode: 'no-cors', // 使用 no-cors 模式绕过 CORS 限制
-                    cache: 'no-cache'
-                });
-                
-                // no-cors 模式下，响应会是 opaque 类型，我们无法读取状态
-                // 但至少说明请求发送了，对于我们的目的，可以认为可用
-                statusElement.textContent = '可访问';
-                statusElement.className = 'system-card-status status-available';
-                console.log(`系统 ${system.name} 检测为可访问`);
-            } catch (error) {
-                // 即使出错，我们仍然尝试加载，因为某些网站可能阻止 HEAD 请求
-                statusElement.textContent = '可访问 (检测受限)';
-                statusElement.className = 'system-card-status status-available';
-                console.log(`系统 ${system.name} 检测受限，但仍尝试加载`);
-            }
+        function createIframeContainer(tabId, systemIndex) {
+            if (document.getElementById(`iframe-${tabId}`)) return;
+            const containerDiv = document.createElement('div');
+            containerDiv.className = 'iframe-container';
+            containerDiv.id = `iframe-${tabId}`;
+            containerDiv.dataset.tabId = tabId;
+            containerDiv.innerHTML = `<div class="tab-loading" id="tab-loading-${tabId}"><div class="tab-spinner"></div><div>正在加载系统，请稍后...</div></div>`;
+            contentArea.appendChild(containerDiv);
         }
         
-        // 打开或切换到系统
-        function openOrSwitchSystem(index) {
-            // 检查是否已打开该系统的标签页
-            const existingTab = tabs.find(tab => tab.systemIndex === index);
-            
-            if (existingTab) {
-                // 如果已打开，切换到该标签页
-                switchTab(existingTab.id);
-            } else {
-                // 如果未打开，创建新标签页
-                createTab(index);
-            }
-        }
-        
-        // 创建新标签页
         function createTab(systemIndex) {
             const system = systems[systemIndex];
-            const tabId = 'tab_' + Date.now() + '_' + systemIndex;
-            
-            // 创建标签页对象
-            const tab = {
+            if (!system) return;
+            const existing = tabs.find(t => t.systemIndex === systemIndex);
+            if (existing) {
+                switchTab(existing.id);
+                return;
+            }
+            const tabId = `tab_${Date.now()}_${systemIndex}`;
+            const newTab = {
                 id: tabId,
                 systemIndex: systemIndex,
                 name: system.shortName,
                 fullName: system.name,
                 url: system.url,
-                zoom: system.zoom,
-                active: true
+                zoom: 1.0
             };
-            
-            // 添加到标签页数组
-            tabs.push(tab);
-            
-            // 创建iframe容器
+            tabs.push(newTab);
             createIframeContainer(tabId, systemIndex);
-            
-            // 更新标签页显示
-            updateTabs();
-            
-            // 激活这个标签页
+            updateTabsBar();
             switchTab(tabId);
-            
-            // 加载内容
             loadTabContent(tabId);
-            
-            // 更新当前系统显示
-            currentSystemElement.textContent = system.shortName;
-            
-            // 显示顶部刷新按钮
+            currentSystemSpan.textContent = system.shortName;
             headerRefreshBtn.style.display = 'flex';
-            
-            // 隐藏欢迎页面
             welcomeContainer.style.display = 'none';
         }
         
-        // 创建iframe容器
-        function createIframeContainer(tabId, systemIndex) {
-            const iframeContainer = document.createElement('div');
-            iframeContainer.className = 'iframe-container';
-            iframeContainer.id = `iframe-${tabId}`;
-            iframeContainer.dataset.tabId = tabId;
-            iframeContainer.dataset.systemIndex = systemIndex;
-            
-            // 添加标签页加载状态
-            const loadingOverlay = document.createElement('div');
-            loadingOverlay.className = 'tab-loading';
-            loadingOverlay.id = `tab-loading-${tabId}`;
-            loadingOverlay.innerHTML = `
-                <div class="tab-spinner"></div>
-                <div style="font-size: 0.9rem; color: var(--text-secondary);">正在刷新...</div>
-            `;
-            
-            iframeContainer.appendChild(loadingOverlay);
-            contentArea.appendChild(iframeContainer);
-        }
-        
-        // 加载标签页内容
-        function loadTabContent(tabId) {
-            const tab = tabs.find(t => t.id === tabId);
-            if (!tab) return;
-            
-            const iframeContainer = document.getElementById(`iframe-${tabId}`);
-            if (!iframeContainer) return;
-            
-            // 清空容器内容（保留加载状态层）
-            const loadingOverlay = iframeContainer.querySelector('.tab-loading');
-            const existingIframe = iframeContainer.querySelector('iframe');
-            if (existingIframe) {
-                existingIframe.remove();
-            }
-            
-            // 显示标签页加载状态
-            if (loadingOverlay) {
-                loadingOverlay.style.display = 'flex';
-            }
-            
-            // 创建iframe
-            const iframe = document.createElement('iframe');
-            iframe.id = `iframe-content-${tabId}`;
-            iframe.src = tab.url;
-            
-            iframe.onload = () => {
-                // 隐藏标签页加载状态
-                if (loadingOverlay) {
-                    loadingOverlay.style.display = 'none';
-                }
-                applyZoom(tabId);
-                console.log(`${tab.fullName} 加载成功`);
-            };
-            
-            iframe.onerror = () => {
-                // 加载失败，显示错误信息
-                if (loadingOverlay) {
-                    loadingOverlay.style.display = 'none';
-                }
-                showErrorMessage(iframeContainer, tab);
-                console.log(`${tab.fullName} 加载失败`);
-            };
-            
-            // 设置超时
-            setTimeout(() => {
-                if (loadingOverlay && loadingOverlay.style.display !== 'none') {
-                    loadingOverlay.style.display = 'none';
-                    // 如果超时，仍然显示iframe，让用户看到加载状态
-                    console.log(`${tab.fullName} 加载超时，但继续显示`);
-                }
-            }, 15000); // 15秒超时
-            
-            iframeContainer.appendChild(iframe);
-        }
-        
-        // 刷新标签页
-        function refreshTab(tabId) {
-            const tab = tabs.find(t => t.id === tabId);
-            if (!tab) return;
-            
-            console.log(`刷新标签页: ${tab.fullName}`);
-            loadTabContent(tabId);
-        }
-        
-        // 显示错误信息
-        function showErrorMessage(container, tab) {
-            // 移除现有的错误信息
-            const existingError = container.querySelector('.error-container');
-            if (existingError) {
-                existingError.remove();
-            }
-            
-            const errorContainer = document.createElement('div');
-            errorContainer.className = 'welcome-container';
-            errorContainer.style.height = '100%';
-            errorContainer.style.position = 'absolute';
-            errorContainer.style.top = '0';
-            errorContainer.style.left = '0';
-            errorContainer.style.width = '100%';
-            errorContainer.style.zIndex = '2';
-            
-            errorContainer.innerHTML = `
-                <div class="welcome-content">
-                    <div class="welcome-icon">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <h2 class="welcome-title">${tab.fullName} 加载失败</h2>
-                    <p class="welcome-subtitle">
-                        无法加载 ${tab.name}，可能的原因：<br>
-                        1. 网络连接问题<br>
-                        2. 网站暂时不可用<br>
-                        3. 网址不正确<br>
-                        4. 浏览器安全限制
-                    </p>
-                    <div class="quick-actions">
-                        <button class="quick-action-btn" onclick="retryLoadTab('${tab.id}')">
-                            <i class="fas fa-redo"></i>
-                            重新加载
-                        </button>
-                        <button class="quick-action-btn" onclick="window.open('${tab.url}', '_blank')">
-                            <i class="fas fa-external-link-alt"></i>
-                            在新窗口打开
-                        </button>
-                        <button class="quick-action-btn" onclick="closeTab('${tab.id}')">
-                            <i class="fas fa-times"></i>
-                            关闭标签页
-                        </button>
-                    </div>
-                    <p style="margin-top: 20px; font-size: 0.9rem; color: var(--warning-color);">
-                        网址: ${tab.url}
-                    </p>
-                </div>
-            `;
-            
-            container.appendChild(errorContainer);
-        }
-        
-        // 重试加载标签页
-        function retryLoadTab(tabId) {
-            const container = document.getElementById(`iframe-${tabId}`);
-            if (!container) return;
-            
-            // 移除错误信息
-            const errorContainer = container.querySelector('.welcome-container');
-            if (errorContainer) {
-                errorContainer.remove();
-            }
-            
-            loadTabContent(tabId);
-        }
-        
-        // 切换标签页
         function switchTab(tabId) {
             const tab = tabs.find(t => t.id === tabId);
             if (!tab) return;
-            
-            // 更新所有标签页状态
-            tabs.forEach(t => {
-                t.active = t.id === tabId;
-            });
-            
-            // 更新所有iframe容器显示状态
-            document.querySelectorAll('.iframe-container').forEach(container => {
-                if (container.dataset.tabId === tabId) {
-                    container.classList.add('active');
-                } else {
-                    container.classList.remove('active');
-                }
-            });
-            
-            // 更新标签页显示
-            updateTabs();
-            
-            // 更新当前系统显示
-            currentSystemElement.textContent = tab.name;
-            
-            // 激活对应的系统导航标签
-            systemTabs.forEach((navTab, index) => {
-                if (index === tab.systemIndex) {
-                    navTab.classList.add('active');
-                } else {
-                    navTab.classList.remove('active');
-                }
-            });
-            
+            tabs.forEach(t => t.active = (t.id === tabId));
             currentTabId = tabId;
-        }
-        
-        // 关闭标签页
-        function closeTab(tabId) {
-            // 从标签页数组中移除
-            tabs = tabs.filter(tab => tab.id !== tabId);
             
-            // 移除对应的iframe容器
-            const iframeContainer = document.getElementById(`iframe-${tabId}`);
-            if (iframeContainer) {
-                iframeContainer.remove();
-            }
-            
-            // 如果关闭的是当前活动标签页
-            if (tabId === currentTabId) {
-                if (tabs.length > 0) {
-                    // 激活最后一个标签页
-                    const lastTab = tabs[tabs.length - 1];
-                    switchTab(lastTab.id);
-                } else {
-                    // 没有标签页了，显示欢迎页面
-                    showWelcomePage();
-                    currentTabId = null;
-                }
-            } else {
-                // 更新标签页显示
-                updateTabs();
-            }
-        }
-        
-        // 更新标签页显示
-        function updateTabs() {
-            tabsContainer.innerHTML = '';
-            
-            tabs.forEach(tab => {
-                const tabElement = document.createElement('button');
-                tabElement.className = `iframe-tab ${tab.active ? 'active' : ''}`;
-                tabElement.setAttribute('data-tab-id', tab.id);
-                
-                const system = systems[tab.systemIndex];
-                
-                tabElement.innerHTML = `
-                    <i class="${system.icon}"></i>
-                    <span>${tab.name}</span>
-                    <div class="tab-controls">
-                        <button class="tab-btn close-btn" data-tab-id="${tab.id}" title="关闭">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                `;
-                
-                tabElement.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab-id');
-                    switchTab(tabId);
-                });
-                
-                tabsContainer.appendChild(tabElement);
-                
-                // 关闭按钮事件
-                const closeBtn = tabElement.querySelector('.close-btn');
-                closeBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const tabId = this.getAttribute('data-tab-id');
-                    closeTab(tabId);
-                });
+            document.querySelectorAll('.iframe-container').forEach(container => {
+                if (container.dataset.tabId === tabId) container.classList.add('active');
+                else container.classList.remove('active');
             });
+            updateTabsBar();
+            currentSystemSpan.textContent = tab.name;
+            headerRefreshBtn.style.display = 'flex';
+            
+            if (systemTabButtons.length) {
+                systemTabButtons.forEach((btn, idx) => {
+                    if (idx === tab.systemIndex) btn.classList.add('active');
+                    else btn.classList.remove('active');
+                });
+            }
         }
         
-        // 显示欢迎页面
-        function showWelcomePage() {
-            welcomeContainer.style.display = 'flex';
-            currentSystemElement.textContent = '系统集成平台';
-            headerRefreshBtn.style.display = 'none';
+        function closeTab(tabId) {
+            const tabIndex = tabs.findIndex(t => t.id === tabId);
+            if (tabIndex === -1) return;
+            tabs.splice(tabIndex, 1);
+            const container = document.getElementById(`iframe-${tabId}`);
+            if (container) container.remove();
             
-            // 重置系统导航标签
-            systemTabs.forEach(tab => tab.classList.remove('active'));
-            systemTabs[0].classList.add('active');
-        }
-        
-        // 打开所有系统
-        function openAllSystems() {
-            // 检查哪些系统还没打开
-            const unopenedSystems = systems.map((_, index) => {
-                const existingTab = tabs.find(tab => tab.systemIndex === index);
-                return existingTab ? null : index;
-            }).filter(index => index !== null);
-            
-            // 如果所有系统都已打开，直接激活第一个
-            if (unopenedSystems.length === 0 && tabs.length > 0) {
-                switchTab(tabs[0].id);
+            if (tabs.length === 0) {
+                showWelcomePage();
+                updateTabsBar();
+                currentTabId = null;
                 return;
             }
             
-            // 打开所有未打开的系统
-            unopenedSystems.forEach(index => {
-                createTab(index);
+            if (currentTabId === tabId) {
+                const newActive = tabs[Math.max(0, tabIndex - 1)];
+                if (newActive) switchTab(newActive.id);
+                else switchTab(tabs[0].id);
+            } else {
+                updateTabsBar();
+            }
+        }
+        
+        function updateTabsBar() {
+            tabsContainer.innerHTML = '';
+            tabs.forEach(tab => {
+                const system = systems[tab.systemIndex];
+                const btn = document.createElement('button');
+                btn.className = `iframe-tab ${tab.id === currentTabId ? 'active' : ''}`;
+                btn.setAttribute('data-tab-id', tab.id);
+                btn.innerHTML = `
+                    <i class="${system.icon}"></i>
+                    <span>${tab.name}</span>
+                    <div class="tab-controls">
+                        <button class="tab-btn close-btn" data-tab-id="${tab.id}" title="关闭"><i class="fas fa-times"></i></button>
+                    </div>
+                `;
+                btn.addEventListener('click', (e) => {
+                    if (e.target.closest('.close-btn')) return;
+                    switchTab(tab.id);
+                });
+                const closeBtn = btn.querySelector('.close-btn');
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeTab(tab.id);
+                });
+                tabsContainer.appendChild(btn);
             });
         }
         
-        // 关闭所有标签页
+        function openOrSwitchSystem(index) {
+            if (!systems[index]) return;
+            const existingTab = tabs.find(t => t.systemIndex === index);
+            if (existingTab) switchTab(existingTab.id);
+            else createTab(index);
+        }
+        
+        function openAllSystems() {
+            for (let i = 0; i < systems.length; i++) {
+                const already = tabs.some(t => t.systemIndex === i);
+                if (!already) createTab(i);
+            }
+            if (tabs.length) switchTab(tabs[0].id);
+        }
+        
         function closeAllTabs() {
-            // 移除所有iframe容器
-            document.querySelectorAll('.iframe-container').forEach(container => {
-                container.remove();
-            });
-            
-            // 清空标签页数组
+            document.querySelectorAll('.iframe-container').forEach(c => c.remove());
             tabs = [];
-            
-            // 更新显示
-            updateTabs();
+            updateTabsBar();
             showWelcomePage();
             currentTabId = null;
         }
         
-        // 应用缩放
-        function applyZoom(tabId) {
-            const tab = tabs.find(t => t.id === tabId);
-            if (!tab) return;
-            
-            const iframe = document.getElementById(`iframe-content-${tabId}`);
-            if (!iframe) return;
-            
-            iframe.style.transform = `scale(${tab.zoom})`;
-            iframe.style.transformOrigin = '0 0';
+        async function checkSystemAvailability(index) {
+            const system = systems[index];
+            const statusSpan = document.getElementById(`sysStatus_${index}`);
+            if (!statusSpan) return;
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
+                await fetch(system.url, { method: 'HEAD', mode: 'no-cors', signal: controller.signal });
+                clearTimeout(timeoutId);
+                statusSpan.textContent = '✓ 可访问';
+                statusSpan.className = 'system-card-status status-available';
+            } catch (e) {
+                statusSpan.textContent = '⚠️ 待加载 (可能受限)';
+                statusSpan.className = 'system-card-status status-checking';
+            }
         }
         
-        // 键盘快捷键支持
-        document.addEventListener('keydown', (event) => {
-            // Ctrl + 加号: 放大
-            if ((event.ctrlKey || event.metaKey) && (event.key === '+' || event.key === '=')) {
-                event.preventDefault();
-                if (currentTabId) {
-                    const tab = tabs.find(t => t.id === currentTabId);
-                    if (tab && tab.zoom + zoomStep <= maxZoom) {
-                        tab.zoom += zoomStep;
-                        tab.zoom = Math.round(tab.zoom * 10) / 10;
-                        applyZoom(currentTabId);
-                    }
-                }
-            }
-            
-            // Ctrl + 减号: 缩小
-            if ((event.ctrlKey || event.metaKey) && event.key === '-') {
-                event.preventDefault();
-                if (currentTabId) {
-                    const tab = tabs.find(t => t.id === currentTabId);
-                    if (tab && tab.zoom - zoomStep >= minZoom) {
-                        tab.zoom -= zoomStep;
-                        tab.zoom = Math.round(tab.zoom * 10) / 10;
-                        applyZoom(currentTabId);
-                    }
-                }
-            }
-            
-            // Ctrl + 0: 重置缩放
-            if ((event.ctrlKey || event.metaKey) && event.key === '0') {
-                event.preventDefault();
-                if (currentTabId) {
-                    const tab = tabs.find(t => t.id === currentTabId);
-                    if (tab) {
-                        tab.zoom = 1.0;
-                        applyZoom(currentTabId);
-                    }
-                }
-            }
-            
-            // Ctrl + 数字键: 切换系统导航
-            if (event.ctrlKey || event.metaKey) {
-                const key = parseInt(event.key);
-                if (key >= 1 && key <= 4) {
-                    event.preventDefault();
-                    const index = key - 1;
-                    if (index < systems.length) {
-                        openOrSwitchSystem(index);
-                    }
-                }
-            }
-            
-            // Ctrl + R: 刷新当前标签页
-            if ((event.ctrlKey || event.metaKey) && event.key === 'r') {
-                event.preventDefault();
-                if (currentTabId) {
-                    refreshTab(currentTabId);
-                }
-            }
-            
-            // Ctrl + W: 关闭当前标签页
-            if ((event.ctrlKey || event.metaKey) && event.key === 'w') {
-                event.preventDefault();
-                if (currentTabId) {
-                    closeTab(currentTabId);
-                }
-            }
-            
-            // F5: 刷新当前标签页
-            if (event.key === 'F5') {
-                event.preventDefault();
-                if (currentTabId) {
-                    refreshTab(currentTabId);
-                }
-            }
-        });
-        
-        // 触摸屏缩放支持（双指缩放）
-        let initialDistance = 0;
-        let lastScaleChangeTime = 0;
-        
-        contentArea.addEventListener('touchstart', (event) => {
-            if (event.touches.length === 2 && currentTabId) {
-                initialDistance = getDistance(event.touches[0], event.touches[1]);
-                lastScaleChangeTime = Date.now();
-            }
-        });
-        
-        contentArea.addEventListener('touchmove', (event) => {
-            if (event.touches.length === 2 && currentTabId && Date.now() - lastScaleChangeTime > 100) {
-                event.preventDefault();
-                
-                const currentDistance = getDistance(event.touches[0], event.touches[1]);
-                const scaleChange = currentDistance / initialDistance;
-                
-                if (scaleChange > 1.1) {
-                    // 双指分开，放大
-                    const tab = tabs.find(t => t.id === currentTabId);
-                    if (tab && tab.zoom + zoomStep <= maxZoom) {
-                        tab.zoom += zoomStep;
-                        tab.zoom = Math.round(tab.zoom * 10) / 10;
-                        applyZoom(currentTabId);
-                        initialDistance = currentDistance;
-                        lastScaleChangeTime = Date.now();
-                    }
-                } else if (scaleChange < 0.9) {
-                    // 双指捏合，缩小
-                    const tab = tabs.find(t => t.id === currentTabId);
-                    if (tab && tab.zoom - zoomStep >= minZoom) {
-                        tab.zoom -= zoomStep;
-                        tab.zoom = Math.round(tab.zoom * 10) / 10;
-                        applyZoom(currentTabId);
-                        initialDistance = currentDistance;
-                        lastScaleChangeTime = Date.now();
-                    }
-                }
-            }
-        });
-        
-        // 计算两点之间的距离
-        function getDistance(touch1, touch2) {
-            const dx = touch2.clientX - touch1.clientX;
-            const dy = touch2.clientY - touch1.clientY;
-            return Math.sqrt(dx * dx + dy * dy);
+        function buildSystemNav() {
+            systemNav.innerHTML = '';
+            systemTabButtons = [];
+            systems.forEach((sys, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'system-tab';
+                if (idx === 0 && tabs.length === 0) btn.classList.add('active');
+                btn.setAttribute('data-index', idx);
+                btn.innerHTML = `<i class="${sys.icon}"></i><span>${sys.shortName}</span>`;
+                btn.addEventListener('click', () => openOrSwitchSystem(idx));
+                systemNav.appendChild(btn);
+                systemTabButtons.push(btn);
+            });
         }
         
-        // 暴露函数给全局作用域
-        window.retryLoadTab = retryLoadTab;
+        function buildSystemCards() {
+            systemCardsContainer.innerHTML = '';
+            systems.forEach((sys, idx) => {
+                const card = document.createElement('div');
+                card.className = 'system-card';
+                card.setAttribute('data-idx', idx);
+                card.innerHTML = `
+                    <div class="system-card-icon"><i class="${sys.icon}"></i></div>
+                    <div class="system-card-title">${sys.name}</div>
+                    <div class="system-card-desc">${sys.description}</div>
+                    <div class="system-card-status status-checking" id="sysStatus_${idx}">检测连通性...</div>
+                `;
+                card.addEventListener('click', () => openOrSwitchSystem(idx));
+                systemCardsContainer.appendChild(card);
+                checkSystemAvailability(idx);
+            });
+        }
+        
+        // 全局暴露方法供错误重试
+        window.retryLoadTab = (tabId) => {
+            const container = document.getElementById(`iframe-${tabId}`);
+            if (container) {
+                const errDiv = container.querySelector('.error-container');
+                if (errDiv) errDiv.remove();
+                loadTabContent(tabId);
+            }
+        };
         window.closeTab = closeTab;
         window.refreshTab = refreshTab;
+        
+        // ========== 键盘快捷键 ==========
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === '+' || e.key === '=') {
+                    e.preventDefault();
+                    if (currentTabId) {
+                        const tab = tabs.find(t => t.id === currentTabId);
+                        if (tab && tab.zoom + zoomStep <= maxZoom) {
+                            tab.zoom = +(tab.zoom + zoomStep).toFixed(1);
+                            applyZoom(currentTabId);
+                        }
+                    }
+                } else if (e.key === '-') {
+                    e.preventDefault();
+                    if (currentTabId) {
+                        const tab = tabs.find(t => t.id === currentTabId);
+                        if (tab && tab.zoom - zoomStep >= minZoom) {
+                            tab.zoom = +(tab.zoom - zoomStep).toFixed(1);
+                            applyZoom(currentTabId);
+                        }
+                    }
+                } else if (e.key === '0') {
+                    e.preventDefault();
+                    if (currentTabId) {
+                        const tab = tabs.find(t => t.id === currentTabId);
+                        if (tab) { tab.zoom = 1.0; applyZoom(currentTabId); }
+                    }
+                } else if (e.key === 'r') {
+                    e.preventDefault();
+                    if (currentTabId) refreshTab(currentTabId);
+                } else if (e.key === 'w') {
+                    e.preventDefault();
+                    if (currentTabId) closeTab(currentTabId);
+                } else {
+                    const num = parseInt(e.key);
+                    if (num >= 1 && num <= systems.length) {
+                        e.preventDefault();
+                        openOrSwitchSystem(num - 1);
+                    }
+                }
+            }
+            if (e.key === 'F5') {
+                e.preventDefault();
+                if (currentTabId) refreshTab(currentTabId);
+            }
+        });
+        
+        // 双指触摸缩放（移动端）
+        let initialDistance = 0, lastZoomTime = 0;
+        contentArea.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2 && currentTabId) {
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                initialDistance = Math.hypot(dx, dy);
+                lastZoomTime = Date.now();
+            }
+        });
+        contentArea.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2 && currentTabId && Date.now() - lastZoomTime > 100) {
+                e.preventDefault();
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const newDist = Math.hypot(dx, dy);
+                const ratio = newDist / initialDistance;
+                const tab = tabs.find(t => t.id === currentTabId);
+                if (tab) {
+                    if (ratio > 1.05 && tab.zoom + zoomStep <= maxZoom) {
+                        tab.zoom = +(tab.zoom + zoomStep).toFixed(1);
+                        applyZoom(currentTabId);
+                        initialDistance = newDist;
+                        lastZoomTime = Date.now();
+                    } else if (ratio < 0.95 && tab.zoom - zoomStep >= minZoom) {
+                        tab.zoom = +(tab.zoom - zoomStep).toFixed(1);
+                        applyZoom(currentTabId);
+                        initialDistance = newDist;
+                        lastZoomTime = Date.now();
+                    }
+                }
+            }
+        });
+        
+        // 初始化整体
+        function init() {
+            buildSystemNav();
+            buildSystemCards();
+            openAllBtn.addEventListener('click', openAllSystems);
+            closeAllBtn.addEventListener('click', closeAllTabs);
+            headerRefreshBtn.addEventListener('click', () => {
+                if (currentTabId) refreshTab(currentTabId);
+            });
+            showWelcomePage();
+            // 每日首次打开提醒 (手动备份)
+            checkDailyBackupReminder();
+        }
+        
+        init();
     </script>
 </body>
 </html>
